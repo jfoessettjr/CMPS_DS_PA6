@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 260: Module 6 Programming Assignment</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+// NOTE: You must implement the data structures using the no prototype approach.
+//       This is what the book uses, so you can copy it.
+//       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+
+// NOTE: Please review the following links regularly:
+//       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+//       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+//       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+
+
+//------------------------//
+// The sorting algorithms //
+//------------------------//
+console.log("The sorting algorithms");
+
+
+
+
+
+
+  
+
+
+
+// 1. Implement the ArrayList constructor.
+
+function ArrayList() {
+  this.array = [];
+  this.insert = insert;
+  this.toString = toString;
+
+  // 3. Implement Bubble Sort inside the ArrayList constructor and test your code.
+  this.bubbleSort = bubbleSort;
+
+  // 4. Implement Selection Sort inside the ArrayList constructor and test your
+  // code.
+  this.selectionSort = selectionSort;
+
+  // 5. Sequential Search
+  this.sequentialSearch = sequentialSearch;
+}
+
+function insert(item) {
+  this.array.push(item);
+}
+
+function toString() {
+  return this.array.join(' ');
+}
+
+// 2. Implement the createNonSortedArray(size) function from the book.
+function createNonSortedArray(size) {
+  let arr = new ArrayList();
+  for (let i = size; i > 0; i--) {
+    arr.insert(Math.floor(Math.random() * 100));
+  }
+  return arr;
+}
+
+function bubbleSort() {
+  const length = this.array.length;
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length - 1 - i; j++) {
+      if (this.array[j] > this.array[j + 1]) {
+        // Swap the elements
+        [this.array[j], this.array[j + 1]] = [this.array[j + 1], this.array[j]];
+      }
+    }
+  }
+}
+
+function selectionSort() {
+  const length = this.array.length;
+  for (let i = 0; i < length; i++) {
+    let min = i;
+    for (let j = i + 1; j < length; j++) {
+      if (this.array[j] < this.array[min]) {
+        min = j;
+      }
+    }
+    if (min !== i) {
+      // Swap the elements
+      [this.array[i], this.array[min]] = [this.array[min], this.array[i]];
+    }
+  }
+}
+
+// 1. Implement the sequential search inside the ArrayList constructor and test
+//your code.
+function sequentialSearch(item) {
+  for (let i = 0; i < this.array.length; i++) {
+    if (this.array[i] === item) {
+      return i; // Found at index i
+    }
+  }
+  return -1; // Not found
+}
+
+// Test the code
+const arr = createNonSortedArray(10);
+console.log("Original array: " + arr.toString());
+
+arr.bubbleSort();
+console.log("Bubble Sort: " + arr.toString());
+
+const arr2 = createNonSortedArray(10);
+console.log("Original array: " + arr2.toString());
+
+arr2.selectionSort();
+console.log("Selection Sort: " + arr2.toString());
+
+const searchItem = 42; 
+const foundIndex = arr2.sequentialSearch(searchItem);
+
+if (foundIndex !== -1) {
+  console.log(`${searchItem} found at index ${foundIndex}`);
+} else {
+  console.log(`${searchItem} not found in the array.`);
+}
+
+
+
+
+
+//----------------------//
+// Searching algorithms //
+//----------------------//
+console.log("Searching algorithms");
+
+
+
+
+
+</script>
+</head>
+<body>
+  See console!
+</body>
+</html>
